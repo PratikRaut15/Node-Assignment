@@ -91,7 +91,7 @@ function verifyToken(req,res,next){
 
 
 // Listing All Users from database from mysql
- app.get('/getUserDetails',(req,res)=>{
+ app.get('/getUserDetails',verifyToken,(req,res)=>{
     if(con){
         con.connect(function(err){
             if(err){
@@ -104,9 +104,6 @@ function verifyToken(req,res,next){
                         console.log(err);
                     else{
                         res.json({"users" :result } );
-                        // result.forEach(function(response){
-                        //     console.log({"user" : response.username});
-                        // });
                     }	
                         
                 });
